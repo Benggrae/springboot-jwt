@@ -1,12 +1,10 @@
 package com.example.demo.jwt.config;
 
-import com.example.demo.jwt.filter.MyFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.filter.CorsFilter;
 
 @EnableWebSecurity //시큐리티 활성화
@@ -17,7 +15,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-       // http.addFilterBefore(BasicAuthenticationFilter.class,new MyFilter());
+        //http.addFilterBefore(new MyFilter(),BasicAuthenticationFilter.class);
         http.csrf().disable();
         //세션 사용하지 않음
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
